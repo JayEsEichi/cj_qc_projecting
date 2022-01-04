@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="cj">
+	
+	<select id="unit_group" resultType="com.cj_unit_group.vo.UnitGroupVO">
+		select category, unit_count, group_count, count(*) as cnt, (count(*) / (select count(*) from cj_0905_0906_m where category = #{category})) * 100 as ratio from cj_0905_0906_m where category = #{category} group by unit_count, group_count order by ratio desc; 
+	</select>
+
+	<select id="unit_group_ratio" resultType="com.cj_unit_group.vo.UnitGroupVO">
+		select category, unit_count, group_count, count(*) as cnt, (count(*) / (select count(*) from cj_0905_0906_m where category = #{category})) * 100 as ratio from cj_0905_0906_m where category = #{category} group by unit_count, group_count order by ratio desc; 
+	</select>
+	
+	<select id="ratio_graph" resultType="com.cj_unit_group.vo.UnitGroupVO">
+		select category, unit_count, group_count, count(*) as cnt, (count(*) / (select count(*) from cj_0905_0906_m where category = #{ratiograph})) * 100 as ratio from cj_0905_0906_m where category = #{ratiograph} group by unit_count, group_count order by ratio desc; 
+	</select>
+	
+</mapper>	
